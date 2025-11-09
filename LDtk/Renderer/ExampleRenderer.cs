@@ -216,7 +216,7 @@ public class ExampleRenderer : IDisposable
             tilemap = content.Load<Texture2D>(assetName);
         }
 
-        // TilemapCache.Add(path, tilemap);
+        TilemapCache.Add(path, tilemap);
 
         return tilemap;
     }
