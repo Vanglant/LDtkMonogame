@@ -205,7 +205,8 @@ public class ExampleRenderer : IDisposable
         {
             string directory = Path.GetDirectoryName(level.WorldFilePath)!;
             string assetName = Path.Join(directory, path);
-            tilemap = Texture2D.FromFile(graphicsDevice, assetName);
+            using var stream = File.OpenRead(path);
+            tilemap = Texture2D.FromStream(graphicsDevice, stream);
         }
         else
         {
@@ -215,7 +216,7 @@ public class ExampleRenderer : IDisposable
             tilemap = content.Load<Texture2D>(assetName);
         }
 
-        TilemapCache.Add(path, tilemap);
+        // TilemapCache.Add(path, tilemap);
 
         return tilemap;
     }
